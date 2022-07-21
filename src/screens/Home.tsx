@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { HStack, IconButton, VStack, useTheme, Text, Heading, FlatList, Center} from 'native-base';
 import { SignOut } from 'phosphor-react-native';
 import {ChatTeardropText} from 'phosphor-react-native';
@@ -12,14 +13,23 @@ export function Home() {
   const [statusSelected, setStatusSelected] = useState<'open' | 'closed'>('open');
   const [orders, setOrders] = useState<OrderProps[]>([
     {
-    id: '123',
-    patrimony: '123456',
-    when: '18/07/2022 as 10h00',
-    status: 'open',
+      id: '123',
+      patrimony: '123456',
+      when: '18/07/2022 as 14h00',
+      status: 'open'
     }
   ]);
 
+  const navigation = useNavigation();
   const { colors } = useTheme();
+
+  function handleNewOrder() {
+    navigation.navigate('new');
+  }
+
+  function handleOpenDetails(orderId: string) {
+    navigation.navigate('details', {orderId})
+  }
 
   return (
     <VStack flex={1} pb={6} bg="gray.700">
@@ -43,11 +53,11 @@ export function Home() {
         <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems="center">
 
           <Heading color="gray.100">
-            Meus Chamados
+            Solicitações
           </Heading>
 
           <Text color="gray.200">
-            3
+            {orders.length}
           </Text>
         </HStack>
 
@@ -70,9 +80,9 @@ export function Home() {
         <FlatList
           data={orders}
           keyExtractor={item => item.id}
-          renderItem={({item}) => <Order data={item}/>}
+          renderItem={({item}) => <Order data={item} onPress={() => handleOpenDetails(item.id)}/>}
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingBottom: 100}}
+          contentContainerStyle={{ paddingBottom: 100 }}
           ListEmptyComponent={() => (
             <Center>
               <ChatTeardropText color={colors.gray[300]} size={40} />
@@ -84,7 +94,7 @@ export function Home() {
           )}
         />
 
-       <Button title="Nova Solicitacao" />
+       <Button title="Nova Solicitacao" onPress={handleNewOrder} />
       </VStack> 
     </VStack>
   );
