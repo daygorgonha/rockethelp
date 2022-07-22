@@ -1,4 +1,4 @@
-import { SignIn } from "./src/screens/Signin";
+import { SignIn } from "./src/screens/SignIn";
 import { NativeBaseProvider, StatusBar } from "native-base";
 import {useFonts,Roboto_400Regular, Roboto_700Bold} from '@expo-google-fonts/roboto'
 import { THEME } from "./src/styles/theme";
