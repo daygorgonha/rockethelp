@@ -132,24 +132,26 @@ export function Details() {
           description={order.solution}
           footer={order.closed && `Encerrado em ${order.closed}`}
         >
-          <Input 
+          {
+            order.status === 'open' && 
+            <Input 
             placeholder='Descrição da solução'
             onChangeText={setSolution}
             textAlignVertical="top"
             multiline
             h={24}
-          />
+            />
+          }
         </CardDetails>
       </ScrollView>
-
-      {
-        order.status === 'open' && 
-        <Button 
+        {
+          order.status === 'open' && 
+          <Button 
           title="Encerrar solicitação"
           m={5}
           onPress={handleOrderClose}
-        />
-      }
+          />
+        }
     </VStack>
   );
 }
