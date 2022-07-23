@@ -90,9 +90,8 @@ export function Details() {
 
   return (
     <VStack flex={1} bg="gray.700">
-      <Header title="solicitação" />
       <Box px={6}bg="gray.600">
-      <Header title="Solicitação" />
+        <Header title="Solicitação" />
       </Box>
 
       <HStack bg="gray.500" justifyContent="center" p={4}>
@@ -140,16 +139,6 @@ export function Details() {
             multiline
             h={24}
           />
-          {
-            order.status === 'open' &&
-            <Input 
-              placeholder='Descrição da solução'
-              onChangeText={setSolution}
-              textAlignVertical="top"
-              multiline
-              h={24}
-            />
-          }
         </CardDetails>
       </ScrollView>
 
