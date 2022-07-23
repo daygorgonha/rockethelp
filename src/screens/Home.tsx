@@ -135,7 +135,7 @@ export function Home() {
           )}
         />
       }
-       <Button title="Nova Solicitacao" onPress={handleNewOrder} />
+       <Button title="Solicitação" onPress={handleNewOrder} />
       </VStack> 
     </VStack>
   );
